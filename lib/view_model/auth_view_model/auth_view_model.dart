@@ -21,16 +21,12 @@ class AuthViewModel {
         Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
         toastMessage("User Logedin Successfully");
         loadingGetx.setLoading();
-      }).onError((error, stackTrace) {
-        Utils().toastMessage("User not Loged In, Try again!");
-        print("Error from singUpUser while loging user ${error.toString()}");
-        loadingGetx.setLoading();
       });
 
-    } catch (e) {
-      Utils().toastMessage("User not Loged In, Try again!");
+    } on FirebaseAuthException catch (e) {
       loadingGetx.setLoading();
-      print("Error from singInUser while loging user ${e.toString()}");
+      toastMessage(e.code.toString());
+
     }
   }
 
@@ -42,29 +38,29 @@ class AuthViewModel {
           .createUserWithEmailAndPassword(
               email: gmail.toString(), password: passsword.toString())
           .then((value) {
-            Utils().toastMessage("User SignIn Successfully");
+            toastMessage("User SignIn Successfully");
             loadingGetx.setLoading();
             Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
       })
           .onError((error, stackTrace) {
             loadingGetx.setLoading();
-            Utils().toastMessage("User not SignUp, Try again!");
+            toastMessage("User not SignUp, Try again!");
             print("Error from singUpUser while regestring user ${error.toString()}");
       });
     } catch (e) {
-      Utils().toastMessage("User not SignUp, Try again!");
+      toastMessage("User not SignUp, Try again!");
       loadingGetx.setLoading();
       print("Error from singUpUser while regestring user ${e.toString()}");
     }
   }
 
-  // sign out method
 
+  // sign out method
   signOutUser(BuildContext context) async {
     try{
       await _auth.signOut().then((value) {
         Navigator.push(context, MaterialPageRoute(builder: (context) => SignInView()));
-        Utils().toastMessage("User Sign out");
+        toastMessage("User Sign out");
       }).onError((error, stackTrace) {
         print(error.toString()+"from signout on error message");
       });

@@ -11,6 +11,7 @@ class MyTextFormField extends StatelessWidget {
   final Color? prefixIcocColor;
   final bool obscureText;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const MyTextFormField(
       {super.key,
@@ -23,7 +24,9 @@ class MyTextFormField extends StatelessWidget {
       this.prefixIcon,
       this.prefixIcocColor,
       this.obscureText = false,
-      this.controller});
+      this.controller,
+      this.validator,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,7 @@ class MyTextFormField extends StatelessWidget {
               borderSide: focedBorderSide
           )
       ),
+      validator: validator,
     );
   }
 }

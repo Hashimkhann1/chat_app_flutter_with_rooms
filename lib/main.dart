@@ -1,6 +1,13 @@
+import 'package:chat_app/view/auth_view/autth_gate/auth_gate.dart';
+import 'package:chat_app/view/auth_view/signin_view/signin_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'res/dark_light_mode/light_mode.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -12,10 +19,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold()
+      debugShowCheckedModeBanner: false,
+      theme: lightMode,
+      home: AuthGate()
     );
   }
 }

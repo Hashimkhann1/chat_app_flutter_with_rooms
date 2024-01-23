@@ -7,6 +7,7 @@ class MyTextButton extends StatelessWidget {
   final double? fontSize;
   final Color? textColor;
   final FontWeight? fontWeight;
+  final bool loading;
   final double? width;
   final double? height;
   final void Function()? onTap;
@@ -20,7 +21,8 @@ class MyTextButton extends StatelessWidget {
     this.backgroundColor,
     required this.onTap,
     this.width = double.infinity,
-    this.height = 40.0,});
+    this.height = 40.0,
+  this.loading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class MyTextButton extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(8)
         ),
-        child: MyText(title: title,fontSize: fontSize,fontWeight: fontWeight,color: textColor,),
+        child: loading ? CircularProgressIndicator(color: Colors.black54,) : MyText(title: title,fontSize: fontSize,fontWeight: fontWeight,color: textColor,),
       ),
     );
   }

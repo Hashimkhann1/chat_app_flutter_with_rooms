@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "487971971689",
+    "project_id": "roomchatapp-f775e",
+    "storage_bucket": "roomchatapp-f775e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487971971689:android:700a4afd01e9a6be4338f8",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXhfUkQQbguwT5X1DOlmrvF_YlE2IMviQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

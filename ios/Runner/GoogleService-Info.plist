@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAGzadajsbJkzSlFJEncOZK20s4_WNwHg8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>487971971689</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.chatApp</string>
+	<key>PROJECT_ID</key>
+	<string>roomchatapp-f775e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>roomchatapp-f775e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:487971971689:ios:ba14d47cf567d79b4338f8</string>
+</dict>
+</plist>

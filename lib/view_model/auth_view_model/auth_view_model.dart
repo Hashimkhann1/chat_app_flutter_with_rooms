@@ -2,6 +2,7 @@ import 'package:chat_app/res/utils/utils.dart';
 import 'package:chat_app/view/auth_view/signin_view/signin_view.dart';
 import 'package:chat_app/view/home_view/home_view.dart';
 import 'package:chat_app/view_model/getx/loading/loadgin_getx.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,10 +48,23 @@ class AuthViewModel {
             toastMessage("User not SignUp, Try again!");
             print("Error from singUpUser while regestring user ${error.toString()}");
       });
+
+      // ading user info
+      if(_auth.currentUser != null){
+        await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).set({
+          "userName": gmail.split('@')[0],
+          'userEmail': gmail.toString(),
+          'userUid': _auth.currentUser!.uid.toString(),
+          'dateAndTime': DateTime.now(),
+        }).onError((error, stackTrace){
+          print(">>>>>>> Error from adding user info after authentication");
+          print(error.toString());
+        });
+      }
     } catch (e) {
       toastMessage("User not SignUp, Try again!");
       loadingGetx.setLoading();
-      print("Error from singUpUser while regestring user ${e.toString()}");
+      print("Error from singUpUser whi12345678le regestring user ${e.toString()}");
     }
   }
 

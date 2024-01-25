@@ -16,52 +16,74 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: MyText(title: "Home",),
+        title: MyText(
+          title: "Home",
+        ),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
         centerTitle: true,
       ),
       drawer: MyDrawer(),
       body: StreamBuilder(
         stream: _chatViewModel.getUserStream(),
-        builder: (context , snapshot){
+        builder: (context, snapshot) {
           // error
-          if(snapshot.hasError){
-            return Text("Error");
+          if (snapshot.hasError) {
+            return const Text("Error");
           }
-          
-          if(snapshot.connectionState == ConnectionState.waiting){
-            return Text("Loading");
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
           // loading..
 
           // return list view
           return ListView(
-            children: snapshot.data!.map<Widget>((userData){
-              return _logedinUser.email == userData['userEmail'] ? SizedBox() : InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChatView()));
-                },
-                child:  Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: Row(
-                    children: [
-                      const MyIcon(icon: Icons.person),
-                      const SizedBox(width: 10,),
-                      MyText(title: userData['userName'],fontSize: 20,fontWeight: FontWeight.bold,)
-                    ],
-                  ),
-                ),
-              );
+            children: snapshot.data!.map<Widget>((userData) {
+              return _logedinUser.email == userData['userEmail']
+                  ? SizedBox()
+                  : InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChatView(
+                                      receiverEmail:
+                                          userData['userEmail'].toString(),
+                                  receiverID: userData['userUid'],
+                                    )));
+                      },
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Row(
+                          children: [
+                            const MyIcon(icon: Icons.person,size: 30,),
+                            const SizedBox(
+                              width: 14,
+                            ),
+                            MyText(
+                              title: userData['userName'],
+                              fontSize: 20,
+                              // fontWeight: FontWeight.bold,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
             }).toList(),
           );
-        }
-        ,),
+        },
+      ),
     );
   }
 }

@@ -25,6 +25,14 @@ class SignUpView extends StatelessWidget {
     final color = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: color.background,
+      appBar: AppBar(
+        title: MyText(title: "Register",),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(

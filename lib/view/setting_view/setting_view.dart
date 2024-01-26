@@ -12,6 +12,9 @@ class SettignView extends StatefulWidget {
 }
 
 class _SettignViewState extends State<SettignView> {
+
+  bool isDark = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +32,13 @@ class _SettignViewState extends State<SettignView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             MyText(title: "Dark Mode",fontWeight: FontWeight.bold,fontSize: 18,),
-            CupertinoSwitch(value: false
-                , onChanged: (value){},)
+            CupertinoSwitch(value: isDark
+                , onChanged: (value){
+              setState(() {
+                isDark = !isDark;
+                // Get.changeThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
+              });
+              },)
           ],
         ),
       ),

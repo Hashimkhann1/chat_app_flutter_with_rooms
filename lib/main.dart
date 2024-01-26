@@ -1,5 +1,4 @@
 import 'package:chat_app/view/auth_view/autth_gate/auth_gate.dart';
-import 'package:chat_app/view/auth_view/signin_view/signin_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: lightMode,
-      home: AuthGate()
+        home: AuthGate()
     );
   }
 }
